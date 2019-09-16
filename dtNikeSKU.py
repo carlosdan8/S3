@@ -48,7 +48,7 @@ dtNikeSKU['Date'] = pd.to_datetime(dtNikeSKU['Date'])
 dtNikeSKU['Month'] = dtNikeSKU['Date'].dt.month
 dtNikeSKU['AÑO'] = dtNikeSKU['Date'].dt.year
 dtNikeSKU = dtNikeSKU.sort_values(by = ['Month','AÑO'])
-dtNikeSKU = dtNikeSKU.pivot_table(values = 'Units', index = ['CÓDIGO', 'AÑO'], columns='Month', fill_value=0,aggfunc = 'sum')
+dtNikeSKU = dtNikeSKU.pivot_table(values = 'Units', index = ['CÓDIGO', 'AÑO'], columns='Month', fill_value=0,aggfunc = 'sum').reset_index(drop=False)
 dtNikeSKU = dtNikeSKU.rename(columns = {1:'ENE',2:'FEB',3:'MAR',4:'ABR',5:'MAY',6:'JUN',7:'JUL',8:'AGO',9:'SEP',10:'OCT',11:'NOV',12:'DIC'})
 dtNikeSKU = dtNikeSKU.sort_values(['AÑO','CÓDIGO'])
 dtNikeSKU.to_csv('NikeSKU.csv')
